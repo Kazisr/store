@@ -25,9 +25,35 @@ public class CartController {
         return "Added product to cart with id "+prc.getProductId();
     }
 
-    @PostMapping("/cart/product/delete")
+    @PostMapping("/cart/clear")
     public void deleteCartProduct(@RequestBody int id){
+        cRepo.deleteAll();
+
+    }
+
+    @PostMapping("/cart/product/delete")
+    public void deleteCartProductById(@RequestBody int id){
         cRepo.deleteById(id);
 
     }
+
+    @GetMapping("/cart/tota")
+    public int totalCart(){
+        List<Cart> crt = cRepo.findAll();
+        return crt.size();
+
+
+    }
+
+    @GetMapping("/cart/totalPrice")
+    public double totalCartPrice(){
+        List<Cart> crt = cRepo.findAll();
+        double totalCartPrice = 0;
+
+        for (int i = 0; i<crt.size(); i++){
+            totalCartPrice = totalCartPrice +((double) crt.get(i).getProductPrice()*(double) crt.get(i).getProductQuantity());
+        }
+        return totalCartPrice;
+    }
+
 }
