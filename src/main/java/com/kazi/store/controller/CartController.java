@@ -26,7 +26,7 @@ public class CartController {
     }
 
     @PostMapping("/cart/clear")
-    public void deleteCartProduct(@RequestBody int id){
+    public void deleteCartProduct(){
         cRepo.deleteAll();
 
     }
