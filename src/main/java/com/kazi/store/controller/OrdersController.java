@@ -37,4 +37,9 @@ public class OrdersController {
         return odr.size();
     }
 
+    @GetMapping("/orders/lastOrderId")
+    public int lastOrderId(){
+        List<Orders> odr = oRepo.findAll();
+        return odr.get(odr.size()-1).getOrderId();
+    }
 }
