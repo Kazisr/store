@@ -10,7 +10,7 @@ import java.util.List;
 @Document(collection = "Orders")
 public class Orders {
     @Id
-    private int orderId;
+    private int id;
     private String userName;
     private String userFirstName;
     private String userLastName;

@@ -22,7 +22,7 @@ public class OrdersController {
     @PostMapping("/orders/add")
     public String addOrders(@RequestBody Orders odr){
         oRepo.save(odr);
-        return "Added product to cart with id "+odr.getOrderId();
+        return "Added product to cart with id "+odr.getId();
     }
 
     @PostMapping("/orders/delete")
@@ -37,9 +37,10 @@ public class OrdersController {
         return odr.size();
     }
 
-    @GetMapping("/orders/lastOrderId")
-    public int lastOrderId(){
+    @GetMapping("/orders/newOrderId")
+    public int newOrderId(){
         List<Orders> odr = oRepo.findAll();
-        return odr.get(odr.size()-1).getOrderId();
+        int newId = ((odr.get(odr.size()-1).getId())+1);
+        return newId;
     }
 }
