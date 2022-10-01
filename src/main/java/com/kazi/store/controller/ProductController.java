@@ -1,5 +1,6 @@
 package com.kazi.store.controller;
 
+import com.kazi.store.model.Cart;
 import com.kazi.store.model.Products;
 import com.kazi.store.repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,12 @@ public class ProductController {
        return pRepo.findByProductName(name);
     }
 
+    @GetMapping("/product/lastProductId")
+    public int totalCart(){
+        List<Products> pro = pRepo.findAll();
 
+        return (pro.size()+1);
+
+
+    }
 }

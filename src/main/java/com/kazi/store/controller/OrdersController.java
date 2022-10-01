@@ -41,6 +41,7 @@ public class OrdersController {
     public int newOrderId(){
         List<Orders> odr = oRepo.findAll();
         int newId = ((odr.get(odr.size()-1).getId())+1);
+        System.out.println(newId);
         return newId;
     }
 }
