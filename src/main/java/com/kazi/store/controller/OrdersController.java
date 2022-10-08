@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import java.util.Optional;
 @CrossOrigin("http://localhost:4200/")
 @RestController
 public class OrdersController {
@@ -22,7 +22,7 @@ public class OrdersController {
     @PostMapping("/orders/add")
     public String addOrders(@RequestBody Orders odr){
         oRepo.save(odr);
-        return "Added product to cart with id "+odr.getId();
+        return "Added product to cart with id "+odr.getOrderId();
     }
 
     @PostMapping("/orders/delete")
@@ -40,7 +40,7 @@ public class OrdersController {
     @GetMapping("/orders/newOrderId")
     public int newOrderId(){
         List<Orders> odr = oRepo.findAll();
-        int newId = ((odr.get(odr.size()-1).getId())+1);
+        int newId = ((odr.get(odr.size()-1).getOrderId())+1);
         System.out.println(newId);
         return newId;
     }
